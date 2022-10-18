@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Navbar } from './';
-import { Posts } from './';
+import { Navbar, Posts } from './';
 
 const Main = () => {
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState({})
   useEffect(()=>{
   async function getUrl(){
-    let response = await fetch( `https://strangers-things.herokuapp.com/api/2209-FTB-ET_WEB_FT`)
+    let response = await fetch( `https://strangers-things.herokuapp.com/api/2209-FTB-ET_WEB_FT/posts`)
     let result = await response.json()
-      console.log(result)
-      setData(result)
+      let posts = result.data.posts
+      setData(posts)
     }
     getUrl()
   },[])
