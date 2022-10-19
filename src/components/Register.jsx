@@ -14,8 +14,8 @@ const Register = (props) => {
     return(
         <div id="box">
         <form onSubmit={handleSubmit}>
-            <input placeholder="Username:"></input>
-            <input placeholder="Password:"></input>
+            <input id='username' placeholder="Username:"></input>
+            <input id='password' placeholder="Password:"></input>
             <button>SUBMIT</button>
         </form>
         </div>

@@ -74,3 +74,9 @@ tr:hover {
 img {
   border-radius: 5px;
 }
+
+#post{
+  border: black 2px solid;
+  padding: 5px;
+  margin: 5px;
+}

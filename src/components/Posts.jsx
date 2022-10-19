@@ -12,11 +12,18 @@ useEffect(()=>{
     }
     fetchPosts()
 }, [])
-
+console.log(posts)
     return(
         <div id="posts">
            { posts.length ? posts.map((post,index)=> {
-                return <div key={`post ${index}`}>{post.title}</div>
+                return (
+                <div id='post' key={`post ${index}`}>{post.title}
+                <div>{post.description}</div>
+                <div>{post.author.username}</div>
+                <div>{post.price}</div>
+                <div>{`location: ${post.location}`}</div>
+                </div>
+                )
            }) : <div>Loading Posts</div>
         }
         </div>

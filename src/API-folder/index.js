@@ -26,3 +26,25 @@ export async function registerUser(){
   const result = await response.json()
   console.log(result)
 }
+
+export async function loginUser(username, password){
+  let options = {
+    method: 'POST',
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+        username: 'MexicanCreeper',
+        password: '1*yginoi1'
+      }
+    })
+  }.then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+let response = await fetch(`${BASE_URL}/api/${COHORT}/users/login`)
+let result = await response.json()
+}
+console.log(loginUser())
