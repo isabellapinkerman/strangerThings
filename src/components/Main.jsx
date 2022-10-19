@@ -8,8 +8,8 @@ const Main = () => {
   return (
     <div id="main">
       <Navbar />
-      <Posts data={data}/>
       <Register />
+      <Posts data={data}/>
   </div>
   );
 };
