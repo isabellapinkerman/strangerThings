@@ -35,16 +35,13 @@ export async function loginUser(username, password){
     },
     body: JSON.stringify({
       user: {
-        username: 'MexicanCreeper',
-        password: '1*yginoi1'
+        username: username,
+        password: password
       }
     })
-  }.then(response => response.json())
-  .then(result => {
-    console.log(result);
-  })
-  .catch(console.error);
-let response = await fetch(`${BASE_URL}/api/${COHORT}/users/login`)
-let result = await response.json()
+  }
+  let response = await fetch(`${BASE_URL}/api/${COHORT}/users/login`)
+  let result = await response.json()
+  return result
 }
-console.log(loginUser())
+//console.log(loginUser())
