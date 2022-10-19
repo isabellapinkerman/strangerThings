@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import {registerUser} from '../API-folder';
 
 const Login = (props) => {
+    const [user, setUser] = useState();
+console.log(props)
+    function getUser(){
+        setUser(user)
+    }
+
     let Navigate = useNavigate()
     function handleSubmit(event){
         event.preventDefault()
@@ -16,12 +22,17 @@ const Login = (props) => {
       Navigate(path)
     }
 
+    function redirectLoggedIn(){
+        let path = '/login/me'
+        Navigate(path)
+    }
+
     return(
         <div id="box">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} user={user}>
             <input id='username' placeholder="Username:"></input>
             <input id='password' placeholder="Password:"></input>
-            <button type="submit">SUBMIT</button>
+            <button type="submit" onClick={redirectLoggedIn}>SUBMIT</button>
             <button type="button" onClick={redirectSignup}>Don't have an account?</button>
         </form>
         </div>

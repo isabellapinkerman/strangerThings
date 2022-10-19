@@ -44,4 +44,16 @@ export async function loginUser(username, password){
   let result = await response.json()
   return result
 }
-//console.log(loginUser())
+
+export async function getUserData(){
+let options = {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer TOKEN_STRING_HERE'
+  }
+}
+  let response = await fetch(`${BASE_URL}/api/${COHORT}/users/me`)
+  let result = await response.json()
+  return result
+}
+console.log(getUserData())

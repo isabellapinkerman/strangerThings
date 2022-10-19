@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Posts, Register, Login } from './';
-import { BrowserRouter as Router, Routes, Route, Switch, Link} from "react-router-dom";
+import { BrowserRouter as Router,
+Route, Routes, Switch, Link} from "react-router-dom";
 
 const Main = () => {
 
@@ -29,6 +30,11 @@ const Main = () => {
             <Login />
           </div>
         }>
+          <Route path="/login/me" element={
+          <div id="main">
+            <Navbar />
+          </div>
+        }></Route>
         </Route>
       </Routes>
     </Router>
