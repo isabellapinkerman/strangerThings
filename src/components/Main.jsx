@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Posts, Register, Login } from './';
+import { Navbar, Posts, Register, Login, WelcomeScreen } from './';
 import { BrowserRouter as Router,
 Route, Routes, Switch, Link} from "react-router-dom";
 
@@ -30,9 +30,10 @@ const Main = () => {
             <Login />
           </div>
         }>
-          <Route path="/login/me" element={
+          <Route path="/login/welcome" element={
           <div id="main">
             <Navbar />
+            <WelcomeScreen />
           </div>
         }></Route>
         </Route>

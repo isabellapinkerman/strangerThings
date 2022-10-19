@@ -1,42 +1,58 @@
-import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
-import {registerUser} from '../API-folder';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../API-folder";
 
 const Login = (props) => {
-    const [user, setUser] = useState();
-console.log(props)
-    function getUser(){
-        setUser(user)
-    }
+  const [user, setUser] = useState();
+  console.log(props);
+  function getUser() {
+    setUser(user);
+  }
 
-    let Navigate = useNavigate()
-    function handleSubmit(event){
-        event.preventDefault()
-        console.log(event)
-        const username = event.target[0].value
-        const password = event.target[1].value
-        console.log(username,password)
-    }
-    function redirectSignup(){
-      let path = '/register'
-      Navigate(path)
-    }
+  let Navigate = useNavigate();
 
-    function redirectLoggedIn(){
-        let path = '/login/me'
-        Navigate(path)
+  async function handleSubmit(event) {
+    try {
+      event.preventDefault();
+      console.log(event);
+      const username = event.target[0].value;
+      const password = event.target[1].value;
+      const token = await loginUser(username, password);
+      console.log(token);
+      localStorage.removeItem("token");
+      localStorage.setItem("token", token);
+      console.log(username, password);
+      let path = "/login/welcome";
+      Navigate(path);
+    } catch (error) {
+      console.log(error);
     }
+  }
 
-    return(
-        <div id="box">
-        <form onSubmit={handleSubmit} user={user}>
-            <input id='username' placeholder="Username:"></input>
-            <input id='password' placeholder="Password:"></input>
-            <button type="submit" onClick={redirectLoggedIn}>SUBMIT</button>
-            <button type="button" onClick={redirectSignup}>Don't have an account?</button>
-        </form>
-        </div>
-    )
-}
+//   function redirectSignup() {
+//     let path = "/register";
+//     Navigate(path);
+//   }
+
+//   function redirectLoggedIn() {
+//     let path = "/login/me";
+//     Navigate(path);
+//   }
+//   function redirectWelcome() {
+//     let path = "/login/welcome";
+//     Navigate(path);
+//   }
+
+  return (
+    <div id="box">
+      <form onSubmit={handleSubmit} user={user}>
+        <input id="username" placeholder="Username:"></input>
+        <input id="password" placeholder="Password:"></input>
+        <button type="submit">SUBMIT</button>
+        <button type="button">Don't have an account?</button>
+      </form>
+    </div>
+  );
+};
 
 export default Login;

@@ -1,5 +1,5 @@
 const BASE_URL ='https://strangers-things.herokuapp.com'
-const COHORT = '2209-FTB-ET_WEB_FT'
+const COHORT = '2209-FTB-ET-WEB-FT'
 
 export async function getUrl(){
     let response = await fetch( `${BASE_URL}/api/${COHORT}/posts`)
@@ -8,7 +8,7 @@ export async function getUrl(){
       return posts
     }
 
-export async function registerUser(){
+export async function registerUser(username, password){
   const options = {
     method: 'Post',
     headers: {
@@ -16,15 +16,15 @@ export async function registerUser(){
     },
     body: JSON.stringify({
       user: {
-        username: 'MexicanCreeper',
-        password: '1*yginoi1',
+        username: username,
+        password: password,
       }
       }
     )
   }
-  const response = await fetch(`${BASE_URL}/api/${COHORT}/users/register`)
+  const response = await fetch(`${BASE_URL}/api/${COHORT}/users/register`, options)
   const result = await response.json()
-  console.log(result)
+  return result.data.token
 }
 
 export async function loginUser(username, password){
@@ -40,8 +40,9 @@ export async function loginUser(username, password){
       }
     })
   }
-  let response = await fetch(`${BASE_URL}/api/${COHORT}/users/login`)
+  let response = await fetch(`${BASE_URL}/api/${COHORT}/users/login`, options)
   let result = await response.json()
+  console.log(result)
   return result
 }
 

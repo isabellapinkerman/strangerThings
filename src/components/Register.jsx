@@ -3,12 +3,21 @@ import {registerUser} from '../API-folder';
 
 const Register = (props) => {
 
-    function handleSubmit(event){
-        event.preventDefault()
+    async function handleSubmit(event){
+        try {
+            event.preventDefault()
         console.log(event)
         const username = event.target[0].value
         const password = event.target[1].value
+        const token = await registerUser(username, password)
+        console.log(token)
+        localStorage.removeItem('token')
+        localStorage.setItem('token', token)
         console.log(username,password)
+        } catch (error) {
+            console.log(error)
+        }
+        
     }
 
     return(
@@ -16,7 +25,7 @@ const Register = (props) => {
         <form onSubmit={handleSubmit}>
             <input id='username' placeholder="Username:"></input>
             <input id='password' placeholder="Password:"></input>
-            <button>SUBMIT</button>
+            <button type="submit">SUBMIT</button>
         </form>
         </div>
     )
