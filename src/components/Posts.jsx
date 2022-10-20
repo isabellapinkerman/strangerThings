@@ -5,15 +5,7 @@ import { SinglePost } from "./";
 
 const Posts = (props) => {
   console.log(props);
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    async function fetchPosts() {
-      const allPosts = await getUrl();
-      console.log(allPosts)
-      setPosts(allPosts);
-    }
-    fetchPosts();
-  }, []);
+const posts = props.posts
   console.log(posts);
 
   return (
@@ -21,13 +13,8 @@ const Posts = (props) => {
       {posts.length ? (
         posts.map((post, index) => {
           return (
-            <SinglePost post={post} key={`post ${index}`} />
-            // <div id='post' key={`post ${index}`}>{post.title}
-            // <div>{post.description}</div>
-            // <div>{post.author.username}</div>
-            // <div>{post.price}</div>
-            // <div>{`location: ${post.location}`}</div>
-            // </div>
+            <SinglePost post={post} key={`post ${index}`} />,
+            <DetailButton />
           );
         })
       ) : (

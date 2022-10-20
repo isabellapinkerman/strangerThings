@@ -22,26 +22,13 @@ const Login = (props) => {
       localStorage.removeItem("token");
       localStorage.setItem("token", token);
       console.log(username, password);
+    
       let path = "/login/welcome";
       Navigate(path);
     } catch (error) {
       console.log(error);
     }
   }
-
-//   function redirectSignup() {
-//     let path = "/register";
-//     Navigate(path);
-//   }
-
-//   function redirectLoggedIn() {
-//     let path = "/login/me";
-//     Navigate(path);
-//   }
-//   function redirectWelcome() {
-//     let path = "/login/welcome";
-//     Navigate(path);
-//   }
 
   return (
     <div id="box">
