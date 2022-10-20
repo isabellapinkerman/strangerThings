@@ -3,9 +3,11 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import { loginUser } from '../API-folder';
 import Login from './Login';
 
-const Navbar = () => {
+const Navbar = (props) => {
   let Navigate = useNavigate()
-  const [currentUser, setCurrentUser] = useState()
+  let username = props.username
+  let password = props.password
+  console.log(username, password)
   function redirect(){
     let path = '/login'
     Navigate(path)
@@ -14,12 +16,24 @@ const Navbar = () => {
     let path = '/register'
     Navigate(path)
   }
+  function redirectLogout(){
+    let token = loginUser("token")
+    let path = '/'
+    Navigate(path)
+    localStorage.removeItem("token");
+    // localStorage.setItem("token", null)
+    password = null
+  }
     return (
       <div id="navbar">
         <h2>Stranger's Things</h2>
         <input type="text" placeholder="Search"></input>
         <button>Search</button>
-        <button onClick={redirect}>Log In</button>
+        <div>{
+          username === undefined && password === undefined ? 
+          <button onClick={redirect}>Log In</button> : 
+          <button onClick={redirectLogout}>Log Out</button>
+        }</div>
         <button type="button" onClick={redirectSignup}>Sign Up</button>
         <ul>
           <li>—</li>
