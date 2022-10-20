@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Posts, Register, Login, WelcomeScreen, SeeDetails, SinglePost} from './';
 import { BrowserRouter as Router,
-Route, Routes, Switch, Link} from "react-router-dom";
+Route, Routes, useParams, Switch, Link} from "react-router-dom";
 
 // currentUserInfo = {
 //   useState
@@ -10,6 +10,7 @@ Route, Routes, Switch, Link} from "react-router-dom";
 const Main = () => {
 
   const [data, setData] = useState({})
+  let {userId} = useParams()
 
   return (
     <Router>
@@ -39,9 +40,10 @@ const Main = () => {
             <Posts data={data}/>
           </div>
         }></Route>
-        <Route path="/post-details" element={
+        <Route path="/post/:userId" element={
           <div id="main">
             <Navbar />
+            <SinglePost/>
             <SeeDetails/>
           </div>
         }></Route>

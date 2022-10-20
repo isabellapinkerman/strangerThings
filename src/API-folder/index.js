@@ -58,3 +58,19 @@ let options = {
   return result
 }
 console.log(getUserData())
+
+export async function updatePost(post, id, token){
+  const options = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${token}`
+    },
+    body: JSON.stringify({
+      post
+    })
+  }
+  const response = await fetch(`${BASE_URL}/api/${COHORT}/posts/${id}`, options)
+  const result = await response.json()
+  return result
+}
