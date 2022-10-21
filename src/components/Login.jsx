@@ -18,14 +18,12 @@ const Login = (props) => {
   async function handleSubmit(event) {
     try {
       event.preventDefault();
-      console.log(event);
       const username = event.target[0].value;
       const password = event.target[1].value;
-      const token = await loginUser(username, password);
-      console.log(token);
+      const registeredUser = await loginUser(username, password);
+      const token = registeredUser.token
       localStorage.removeItem("token");
       localStorage.setItem("token", token);
-      console.log(username, password);
     
       let path = "/welcome";
       Navigate(path);
@@ -36,9 +34,9 @@ const Login = (props) => {
 
   return (
     <div id="box">
-      <form onSubmit={handleSubmit} user={user}>
-        <input id="username" placeholder="Username:"></input>
-        <input id="password" placeholder="Password:"></input>
+      <form onSubmit={handleSubmit}>
+        <input id="username" placeholder="Username:" type='text'></input>
+        <input id="password" placeholder="Password:" type = 'password'></input>
         <button type="submit">SUBMIT</button>
         <button type="button" onClick={redirectSignUp}>Don't have an account?</button>
       </form>

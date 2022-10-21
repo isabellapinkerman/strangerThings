@@ -1,8 +1,6 @@
 import React from "react";
-import { Login } from "./Login";
 
-const WelcomeScreen = (props) => {
-  console.log(props);
+const WelcomeScreen = () => {
   return <div>Welcome User</div>;
 };
 

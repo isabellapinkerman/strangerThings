@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navbar, Posts, Register, Login, WelcomeScreen, SeeDetails, SinglePost, SinglePostView} from './';
+import { Navbar, Posts, Register, Login, WelcomeScreen, SeeDetails, SinglePost, SinglePostView, AddPost} from './';
 import { BrowserRouter as Router,
 Route, Routes, useParams, Switch, Link} from "react-router-dom";
 import { getUrl } from "../API-folder";
@@ -8,12 +8,11 @@ import { getUrl } from "../API-folder";
 const Main = () => {
 
   const [posts, setPosts] = useState([]);
-  const [currentPost, setCurrentPost] = useState();
 
 
   useEffect(() => {
     async function fetchPosts() {
-      const allPosts = await getUrl()
+      const allPosts = await getUrl(localStorage.getItem('token'))
       setPosts(allPosts);
     }
     fetchPosts();
@@ -22,16 +21,14 @@ const Main = () => {
   //details button clicked use navigate is called with post id. 
   //when use navigate is called with the post id sending it to :userId route
   //the id is stored in the url bar and can be pulled down using useParams
-// console.log(posts, 'posts')
 
 
-function filterPosts (userId){
-  posts.filter((post)=>{
-  return (post._id == userId)
-  })
-}
+// function filterPosts (userId){
+//   posts.filter((post)=>{
+//   return (post._id == userId)
+//   })
+// }
 
-// console.log(filterPosts)
 //filter through the array to 
 //if the user id is equal to the selected user id, we need to map over each id to find the unique one and return it in order to see its details.
 //singlePost property^^^
@@ -73,6 +70,11 @@ function filterPosts (userId){
           <div id="main">
             <SinglePostView posts={posts}/>
             <SeeDetails/>
+          </div>
+        }></Route>
+        <Route path='/addPost' element={
+          <div id="main">
+            <AddPost />
           </div>
         }></Route>
       </Routes>

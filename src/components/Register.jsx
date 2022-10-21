@@ -1,23 +1,25 @@
 import React from 'react';
 import {registerUser} from '../API-folder';
+import {useState, useEffect} from 'react';
 
-const Register = (props) => {
+const Register = () => {
+    // const [register, setRegister] = useState();
+
+    // useEffect((token)=>{
+    //   registerUser = token
+    // })
 
     async function handleSubmit(event){
         try {
-            event.preventDefault()
-        console.log(event)
+        event.preventDefault()
         const username = event.target[0].value
         const password = event.target[1].value
         const token = await registerUser(username, password)
-        console.log(token)
         localStorage.removeItem('token')
         localStorage.setItem('token', token)
-        console.log(username,password)
         } catch (error) {
             console.log(error)
         }
-        console.log(event.target)
     }
 
     return(

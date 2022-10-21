@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { loginUser } from '../API-folder';
 import Login from './Login';
+import { AddPost } from './';
 
 const Navbar = (props) => {
   let Navigate = useNavigate()
@@ -24,6 +25,10 @@ const Navbar = (props) => {
     // localStorage.setItem("token", null)
     password = null
   }
+  function redirectAddPost(){
+    let path = '/addPost'
+    Navigate(path)
+  }
     return (
       <div id="navbar">
         <h2>Stranger's Things</h2>
@@ -35,7 +40,7 @@ const Navbar = (props) => {
           <button onClick={redirectLogout}>Log Out</button>
         }</div>
         <button type="button" onClick={redirectSignup}>Sign Up</button>
-        <button>Add Post</button>
+        <button onClick={redirectAddPost}>Add Post</button>
     </div>
     );
   };
