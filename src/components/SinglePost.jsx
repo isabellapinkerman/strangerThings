@@ -1,17 +1,14 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const SinglePost = (props) => {
     const post = props.post
-   
 
     const Navigate = useNavigate()
     function redirectSeeDetails(){
         let path = post._id
         Navigate(path)
     }
-
-    console.log(post)
 
     return(
         <div id='post'>{post.title}

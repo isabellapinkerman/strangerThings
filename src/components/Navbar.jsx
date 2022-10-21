@@ -7,7 +7,6 @@ const Navbar = (props) => {
   let Navigate = useNavigate()
   let username = props.username
   let password = props.password
-  console.log(username, password)
   
   function redirect(){
     let path = '/login'

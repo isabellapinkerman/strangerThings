@@ -13,8 +13,8 @@ const posts = props.posts
       {posts.length ? (
         posts.map((post, index) => {
           return (
-            <SinglePost post={post} key={`post ${index}`} />,
-            <DetailButton />
+            <SinglePost post={post} key={`post ${index}`} />
+            // <DetailButton />
           );
         })
       ) : (
