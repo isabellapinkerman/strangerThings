@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { loginUser } from '../API-folder';
 import Login from './Login';
-import { AddPost } from './';
+import { AddPost, Posts } from './';
 
 const Navbar = (props) => {
   let Navigate = useNavigate()
@@ -29,6 +29,11 @@ const Navbar = (props) => {
     let path = '/addPost'
     Navigate(path)
   }
+
+  function searchBar(string){
+    Posts.find(()=>{})
+  }
+
     return (
       <div id="navbar">
         <h2>Stranger's Things</h2>

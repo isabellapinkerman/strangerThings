@@ -35,6 +35,7 @@ export async function registerUser(username, password){
 }
 
 export async function loginUser(username, password){
+  console.log(username, password)
   let options = {
     method: 'POST',
     headers: {
@@ -42,8 +43,8 @@ export async function loginUser(username, password){
     },
     body: JSON.stringify({
       user: {
-        username: username,
-        password: password
+        username,
+        password
       }
     })
   }
@@ -92,6 +93,22 @@ export async function deletePost(id, token){
     },
   }
   const response = await fetch(`${BASE_URL}/api/${COHORT}/posts/${id}`, options)
+  const result = await response.json()
+  return result
+}
+
+export async function createPost(post, token){
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${token}`
+    },
+    body: JSON.stringify({
+      post
+    })
+  }
+  const response = await fetch(`${BASE_URL}/api/${COHORT}/posts`, options)
   const result = await response.json()
   return result
 }

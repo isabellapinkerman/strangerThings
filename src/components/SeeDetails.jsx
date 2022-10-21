@@ -36,6 +36,7 @@ const SeeDetails = (props) => {
   async function handleDelete(e) {
     e.preventDefault();
     const toDelete = e.target.id;
+    console.log(toDelete)
     const token = localStorage.getItem("token");
     const deleted = await deletePost(toDelete, token);
     console.log(deleted);
@@ -63,11 +64,11 @@ const SeeDetails = (props) => {
             <div>{post.location}</div>
           </div>
           <div className="box">
-            <form onChange={handleChange} onSubmit={handleSubmit}>
-              <input id="title" defaultValue={postDetails.title} />
-              <input id="description" defaultValue={postDetails.description} />
-              <input id="price" defaultValue={postDetails.price} />
-              <input id="location" defaultValue={postDetails.location} />
+            <form onChange={handleChange} onSubmit={handleSubmit} >
+              <input id="title" defaultValue={postDetails.title} placeholder="Title"/>
+              <input id="description" defaultValue={postDetails.description} placeholder="Description"/>
+              <input id="price" defaultValue={postDetails.price} placeholder="Price"/>
+              <input id="location" defaultValue={postDetails.location} placeholder="Location"/>
               <button type="submit">Submit</button>
             </form>
             <button

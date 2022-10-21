@@ -15,6 +15,7 @@ const Register = () => {
         const username = event.target[0].value
         const password = event.target[1].value
         const token = await registerUser(username, password)
+        console.log(token,"response from the register function")
         localStorage.removeItem('token')
         localStorage.setItem('token', token)
         } catch (error) {

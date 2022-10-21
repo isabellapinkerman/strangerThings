@@ -9,10 +9,10 @@ const Login = (props) => {
     setUser(user);
   }
 
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   function redirectSignUp(){
       let path = '/register'
-      Navigate(path)
+      navigate(path)
   }
 
   async function handleSubmit(event) {
@@ -26,7 +26,7 @@ const Login = (props) => {
       localStorage.setItem("token", token);
     
       let path = "/welcome";
-      Navigate(path);
+      navigate(path);
     } catch (error) {
       console.log(error);
     }
