@@ -9,7 +9,11 @@ const Login = (props) => {
     setUser(user);
   }
 
-  let Navigate = useNavigate();
+  const Navigate = useNavigate()
+  function redirectSignUp(){
+      let path = '/register'
+      Navigate(path)
+  }
 
   async function handleSubmit(event) {
     try {
@@ -23,7 +27,7 @@ const Login = (props) => {
       localStorage.setItem("token", token);
       console.log(username, password);
     
-      let path = "/login/welcome";
+      let path = "/welcome";
       Navigate(path);
     } catch (error) {
       console.log(error);
@@ -36,7 +40,7 @@ const Login = (props) => {
         <input id="username" placeholder="Username:"></input>
         <input id="password" placeholder="Password:"></input>
         <button type="submit">SUBMIT</button>
-        <button type="button">Don't have an account?</button>
+        <button type="button" onClick={redirectSignUp}>Don't have an account?</button>
       </form>
     </div>
   );

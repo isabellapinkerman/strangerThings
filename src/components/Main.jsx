@@ -22,7 +22,7 @@ const Main = () => {
   //details button clicked use navigate is called with post id. 
   //when use navigate is called with the post id sending it to :userId route
   //the id is stored in the url bar and can be pulled down using useParams
-console.log(posts, 'posts')
+// console.log(posts, 'posts')
 
 
 function filterPosts (userId){
@@ -31,7 +31,7 @@ function filterPosts (userId){
   })
 }
 
-console.log(filterPosts)
+// console.log(filterPosts)
 //filter through the array to 
 //if the user id is equal to the selected user id, we need to map over each id to find the unique one and return it in order to see its details.
 //singlePost property^^^
@@ -50,18 +50,26 @@ console.log(filterPosts)
             <Register />
           </div>
         }></Route>
+
         <Route path="/login" element={
           <div id="main">
             <Login />
           </div>
         }></Route>
-        <Route path="/login/welcome" element={
+
+        <Route path="/welcome" element={
           <div id="main">
             <WelcomeScreen />
             <Posts posts={posts}/>
           </div>
         }></Route>
         <Route path='/:userId' element={
+          <div id="main">
+            <SinglePostView posts={posts}/>
+            <SeeDetails/>
+          </div>
+        }></Route>
+        <Route path='/welcome/:userId' element={
           <div id="main">
             <SinglePostView posts={posts}/>
             <SeeDetails/>

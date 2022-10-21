@@ -35,11 +35,7 @@ const Navbar = (props) => {
           <button onClick={redirectLogout}>Log Out</button>
         }</div>
         <button type="button" onClick={redirectSignup}>Sign Up</button>
-        <ul>
-          <li>—</li>
-          <li>—</li>
-          <li>—</li>
-        </ul>
+        <button>Add Post</button>
     </div>
     );
   };
