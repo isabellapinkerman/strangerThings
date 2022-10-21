@@ -17,7 +17,7 @@ const Register = (props) => {
         } catch (error) {
             console.log(error)
         }
-        
+        console.log(event.target)
     }
 
     return(
