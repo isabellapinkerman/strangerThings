@@ -1,10 +1,7 @@
 import React from 'react';
+import Posts from './Posts';
 
 const SearchBar =()=>{
-
-    
-
-
 
     return(
 <div>{`this is your Search Bar component`}

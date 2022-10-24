@@ -17,6 +17,7 @@ const Main = () => {
     }
     fetchPosts();
   }, []);
+
   
   //details button clicked use navigate is called with post id. 
   //when use navigate is called with the post id sending it to :userId route

@@ -44,11 +44,11 @@ const AddPost = (props) => {
     );
     console.log(createdPost);
   }
-console.log()
+
   return (
         
           <div className="box">
-            <form onChange={handleChange} onSubmit={handleSubmit}>
+            <form /*onChange={handleChange}*/ onSubmit={handleSubmit}>
               <input id="title"  placeholder="Title"/>
               <input id="description"  placeholder="Description"/>
               <input id="price"  placeholder="Price"/>
