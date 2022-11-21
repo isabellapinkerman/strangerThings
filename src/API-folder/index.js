@@ -19,12 +19,12 @@ export async function registerUser(username, password){
   const options = {
     method: 'POST',
     headers: {
-      'content-type': 'application/json'
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       user: {
-        username: username,
-        password: password,
+        username,
+        password,
       }
       }
     )

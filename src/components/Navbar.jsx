@@ -1,51 +1,31 @@
-import React, {useState} from 'react'
-import { Navigate, useNavigate } from 'react-router-dom';
-import { loginUser } from '../API-folder';
-import Login from './Login';
-import { AddPost, Posts } from './';
+import React from 'react'
+import { Link,  Outlet } from 'react-router-dom';
+
 
 const Navbar = (props) => {
-  let Navigate = useNavigate()
-  let username = props.username
-  let password = props.password
-  
-  function redirect(){
-    let path = '/login'
-    Navigate(path)
-  }
-  function redirectSignup(){
-    let path = '/register'
-    Navigate(path)
-  }
-  function redirectLogout(){
-    let token = loginUser("token")
-    let path = '/'
-    Navigate(path)
-    localStorage.removeItem("token");
-    // localStorage.setItem("token", null)
-    password = null
-  }
-  function redirectAddPost(){
-    let path = '/addPost'
-    Navigate(path)
-  }
+const posts = props.posts
+const setPosts = props.setPosts
 
-  function searchBar(string){
-    Posts.find(()=>{})
-  }
+function logOut(event){
+  localStorage.removeItem('token')
+}
 
     return (
       <div id="navbar">
         <h2>Stranger's Things</h2>
-        <input type="text" placeholder="Search"></input>
-        <button>Search</button>
         <div>{
-          username === undefined && password === undefined ? 
-          <button onClick={redirect}>Log In</button> : 
-          <button onClick={redirectLogout}>Log Out</button>
+          !localStorage.getItem('token')? 
+          <div>
+          <Link to="/login"><button>Log In</button></Link>
+         <Link to="/register"><button type="button">Sign Up</button></Link>
+          </div> : 
+          <Link to="/"><button onClick={logOut}>Log Out</button></Link>
         }</div>
-        <button type="button" onClick={redirectSignup}>Sign Up</button>
-        <button onClick={redirectAddPost}>Add Post</button>
+        <div>{ localStorage.getItem('token') ?
+        <Link to="/addPost"><button>Add Post</button></Link> :
+        null
+        }</div>
+        <Outlet />
     </div>
     );
   };

@@ -22,27 +22,22 @@ const AddPost = (props) => {
         })
       : null;
   }, [post]);
-  console.log(post);
 
   function handleChange(e) {
     e.preventDefault();
     const toUpdate = e.target.id;
-    console.log(e.target.id);
     const update = e.target.value;
-    console.log(e.target.value);
     const updatedForm = { ...postDetails, [toUpdate]: update };
     setPostDetails(updatedForm);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("submitted");
     const token = localStorage.getItem('token')
     const createdPost = await createPost(
       postDetails,
     token
     );
-    console.log(createdPost);
   }
 
   return (

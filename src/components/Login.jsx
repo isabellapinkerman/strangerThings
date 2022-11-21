@@ -1,19 +1,8 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom'
 import { loginUser } from "../API-folder";
 
-const Login = (props) => {
-  const [user, setUser] = useState();
-  console.log(props);
-  function getUser() {
-    setUser(user);
-  }
-
-  const navigate = useNavigate()
-  function redirectSignUp(){
-      let path = '/register'
-      navigate(path)
-  }
+const Login = () => {
 
   async function handleSubmit(event) {
     try {
@@ -25,10 +14,8 @@ const Login = (props) => {
       localStorage.removeItem("token");
       localStorage.setItem("token", token);
     
-      let path = "/welcome";
-      navigate(path);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -36,9 +23,11 @@ const Login = (props) => {
     <div id="box">
       <form onSubmit={handleSubmit}>
         <input id="username" placeholder="Username:" type='text'></input>
-        <input id="password" placeholder="Password:" type = 'password'></input>
+        <input id="password" placeholder="Password:" type='password'></input>
         <button type="submit">SUBMIT</button>
-        <button type="button" onClick={redirectSignUp}>Don't have an account?</button>
+       <Link to={"/register"}>
+        <button type="button">Don't have an account?</button>
+       </Link>
       </form>
     </div>
   );

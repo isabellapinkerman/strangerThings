@@ -1,6 +1,4 @@
 import React from "react";
-import { getUrl } from "../API-folder";
-import { useState, useEffect } from "react";
 import { SinglePost } from "./";
 
 const Posts = (props) => {

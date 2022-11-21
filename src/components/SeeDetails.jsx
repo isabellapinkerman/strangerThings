@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { updatePost, deletePost } from "../API-folder";
 
-const SeeDetails = (props) => {
+const SeeDetails = () => {
   const [postDetails, setPostDetails] = useState({
     title: "",
     description: "",
@@ -21,14 +20,11 @@ const SeeDetails = (props) => {
         })
       : null;
   }, [post]);
-  console.log(post);
 
   function handleChange(e) {
     e.preventDefault();
     const toUpdate = e.target.id;
-    console.log(e.target.id);
     const update = e.target.value;
-    console.log(e.target.value);
     const updatedForm = { ...formDetails, [toUpdate]: update };
     setFormDetails(updatedForm);
   }
@@ -36,10 +32,9 @@ const SeeDetails = (props) => {
   async function handleDelete(e) {
     e.preventDefault();
     const toDelete = e.target.id;
-    console.log(toDelete)
     const token = localStorage.getItem("token");
     const deleted = await deletePost(toDelete, token);
-    console.log(deleted);
+
   }
 
   async function handleSubmit(e) {
@@ -71,12 +66,14 @@ const SeeDetails = (props) => {
               <input id="location" defaultValue={postDetails.location} placeholder="Location"/>
               <button type="submit">Submit</button>
             </form>
+            <div>{ localStorage.getItem('token') ?
             <button
               id={post._id ? `${post._id}` : null}
               onClick={(e) => {
                 handleDelete(e);
               }}
-            >DELETE</button>
+            >DELETE</button> : null }
+            </div>
           </div>
         </>
       ) : (

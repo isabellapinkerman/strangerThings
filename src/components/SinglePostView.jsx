@@ -4,8 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const SinglePostView = (props) => {
     const posts = props.posts
     let {userId} = useParams()
-    // console.log(props.posts)
-    console.log(userId)
+    
     const post = posts.find((e)=>{
         if(e._id === userId){
             return true
@@ -13,7 +12,6 @@ const SinglePostView = (props) => {
             return false
         }
     })
-    console.log(post)
 
     const Navigate = useNavigate()
     function redirectHome(){
